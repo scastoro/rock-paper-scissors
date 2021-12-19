@@ -39,7 +39,6 @@ function playRound(playerSelection, computerSelection){
     // Combinations: rock and rock, rock and scissors, rock and paper, scissors and scissors, scissors and paper, paper and paper
     // Can then go through all other cases and print out winner depending on selection
     switch (true){
-        // For same imputs: can check first for equality and print out `Draw! ${playerSelection} is the same as ${computerSelection}!`
         case playerSelectionLower === 'rock' &&  computerSelectionLower === 'scissors':
             // case 1: rock and scissors, output: `You win! ${playerSelection} beats ${computerSelection}`
             output = `You win! ${capitalize(playerSelection)} beats ${computerSelection}`;
@@ -65,19 +64,44 @@ function playRound(playerSelection, computerSelection){
             output = `You lose... ${computerSelection} beats ${capitalize(playerSelection)}`;
             break
         default:
+            // For same imputs: can check for equality and print out `Draw! ${playerSelection} is the same as ${computerSelection}!`
             output = `Draw! ${playerSelection} is the same as ${computerSelection}!`;
     }
     return output;
 }
 
-console.log(playRound(playerSelection, computerPlay()));
+//console.log(playRound(playerSelection, computerPlay()));
 // Consider using switch statement due to large amount of cases
 
 // Use prompt function to get input from user and store it in playerSelection
 // Call computerPlay() function and store output in computerSelection
 // Call playRound() with arguemnts playerSelection and computerSelection
 // Write a game() function that calls playRound() five times that keeps score and reports the winner at the end
+function game(){
+    // Need to have varibles that keep score for player and computer
+    let playerWins = 0;
+    let computerWins = 0;
+
+    let outcome = playRound(playerSelection, computerPlay());
+    console.log(outcome);
+    if (outcome.includes('win')){
+        playerWins++
+        console.log(playerWins);
+    } else if (outcome.includes('lose')){
+        computerWins++
+        console.log(computerWins);
+    }
+
+    if (playerWins > computerWins) {
+        return `Player wins with ${playerWins} rounds won`
+    } else if (computerWins > playerWins) {
+        return `Computer wins with ${computerWins} rounds won`
+    } else {
+        return `You should not get this response`
+    }
+}
+
+console.log(game());
 // Just call playRound() five times
-// Need to have varibles that keep score for player and computer
 // Check score against each other
 // Report winner and loser at the end of function
