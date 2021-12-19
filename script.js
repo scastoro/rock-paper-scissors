@@ -7,8 +7,8 @@ function computerPlay() {
     let theRandomNumber = Math.floor(Math.random() * 3) + 1;
     let selection;
     // Use if...else statements to assign random number to rock, paper or scissors
-    // Store text in variable
     if (theRandomNumber === 1){
+        // Store text in variable
         selection = 'Rock'
     } else if (theRandomNumber === 2){
         selection = 'Paper'
@@ -69,14 +69,14 @@ function playRound(playerSelection, computerSelection){
     return output;
 }
 
-// Write a game() function that calls playRound() five times that keeps score and reports the winner at the end
+// Write a game() function that calls playRound() five times, keeps score and reports the winner at the end
 function game(){
-    // Need to have varibles that keep score for player and computer
+    // Need to have variables that keep score for player and computer
     let playerWins = 0;
     let computerWins = 0;
     // Use for loop to play game five times
     for (let i = 0; i <= 5; i++){
-        // Call playRound() with arguemnts playerSelection and computerSelection
+        // Call playRound() with arguments playerSelection and computerPlay()
         let outcome = playRound(playerSelection, computerPlay());
         console.log(outcome);
         if (outcome.includes('win')){
