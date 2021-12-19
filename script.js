@@ -31,13 +31,12 @@ function capitalize(inputString){
 function playRound(playerSelection, computerSelection){
     // Convert playerSelection and computerSelection to lower case using the String.toLowerCase() method
     const playerSelectionLower = playerSelection.toLowerCase();
-    console.log(playerSelectionLower);
     const computerSelectionLower = computerSelection.toLowerCase();
-    console.log(computerSelectionLower);
     let output;
     // Create if statement or switch statement that has all possible outcomes for all possible combinations of rock, paper, and scissors
     // Combinations: rock and rock, rock and scissors, rock and paper, scissors and scissors, scissors and paper, paper and paper
     // Can then go through all other cases and print out winner depending on selection
+    // Consider using switch statement due to large amount of cases
     switch (true){
         case playerSelectionLower === 'rock' &&  computerSelectionLower === 'scissors':
             // case 1: rock and scissors, output: `You win! ${playerSelection} beats ${computerSelection}`
@@ -65,43 +64,41 @@ function playRound(playerSelection, computerSelection){
             break
         default:
             // For same imputs: can check for equality and print out `Draw! ${playerSelection} is the same as ${computerSelection}!`
-            output = `Draw! ${playerSelection} is the same as ${computerSelection}!`;
+            output = `Draw! ${capitalize(playerSelection)} is the same as ${computerSelection}!`;
     }
     return output;
 }
 
-//console.log(playRound(playerSelection, computerPlay()));
-// Consider using switch statement due to large amount of cases
-
-// Use prompt function to get input from user and store it in playerSelection
-// Call computerPlay() function and store output in computerSelection
-// Call playRound() with arguemnts playerSelection and computerSelection
 // Write a game() function that calls playRound() five times that keeps score and reports the winner at the end
 function game(){
     // Need to have varibles that keep score for player and computer
     let playerWins = 0;
     let computerWins = 0;
-
-    let outcome = playRound(playerSelection, computerPlay());
-    console.log(outcome);
-    if (outcome.includes('win')){
-        playerWins++
-        console.log(playerWins);
-    } else if (outcome.includes('lose')){
-        computerWins++
-        console.log(computerWins);
+    // Use for loop to play game five times
+    for (let i = 0; i <= 5; i++){
+        // Call playRound() with arguemnts playerSelection and computerSelection
+        let outcome = playRound(playerSelection, computerPlay());
+        console.log(outcome);
+        if (outcome.includes('win')){
+            playerWins++
+            console.log(`The Player Wins! Score: player ${playerWins} computer ${computerWins}`);
+        } else if (outcome.includes('lose')){
+            computerWins++
+            console.log(`The Computer Wins! Score: player ${playerWins} computer ${computerWins}`);
+        } else {
+            console.log(`Draw! Score: player ${playerWins} computer ${computerWins}`)
+        }
     }
 
+    // Check score against each other
+    // Report winner and loser at the end of function
     if (playerWins > computerWins) {
-        return `Player wins with ${playerWins} rounds won`
+        return `Player wins the game with ${playerWins} rounds won`
     } else if (computerWins > playerWins) {
-        return `Computer wins with ${computerWins} rounds won`
+        return `Computer wins the game with ${computerWins} rounds won`
     } else {
-        return `You should not get this response`
+        return `Draw! No one wins the game. Player Wins: ${playerWins} is the same as Computer Wins: ${computerWins}`
     }
 }
 
 console.log(game());
-// Just call playRound() five times
-// Check score against each other
-// Report winner and loser at the end of function
