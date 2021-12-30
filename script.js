@@ -77,11 +77,11 @@ function gameWinner() {
     }
     // Report winner and loser at the end of function
     if (playerWins > computerWins) {
-        return `Player wins The Game with ${playerWins} rounds won!!`
+        return `You win The Game with ${playerWins} rounds won!!`
     } else if (computerWins > playerWins) {
         return `Computer wins The Game with ${computerWins} rounds won!!`
     } else {
-        return `Draw! No one wins The Game. Player Wins: ${playerWins} is the same as Computer Wins: ${computerWins}`
+        return `Draw! No one wins The Game. Player Wins: ${playerWins} equals Computer Wins: ${computerWins}`
     }
 }
 
@@ -102,6 +102,15 @@ function game(outcome){
     }
 }
 
+// Create function to take output from playRound and append to results div
+function displayOutput(results, className) {
+    const outputDiv = document.querySelector(`.${className}`);
+    const resultDiv = document.createTextNode(results);
+
+    outputDiv.innerHTML = ' ';
+    outputDiv.replaceChild(resultDiv, outputDiv.firstChild);
+}
+
 // NEW GOAL: Add eventListeners to new buttons in the HTML document which call the playRound() function
 // Make new global variables for player wins, computer wins, and total rounds played
 let playerWins = 0;
@@ -115,17 +124,24 @@ const scissorsBtn = document.getElementById("scissors");
 rockBtn.addEventListener('click', () => {
     const outcome = playRound('rock', computerPlay());
     game(outcome);
-    console.log(gameWinner());
+    displayOutput(outcome, 'text-output');
+    displayOutput(playerWins, 'player-score');
+    displayOutput(computerWins, 'computer-score');
+    displayOutput(gameWinner(), 'game-winner');
 });
 paperBtn.addEventListener('click', () => {
     const outcome = playRound('paper', computerPlay());
-    console.log(outcome);
     game(outcome);
-    console.log(gameWinner());
+    displayOutput(outcome, 'text-output');
+    displayOutput(playerWins, 'player-score');
+    displayOutput(computerWins, 'computer-score');
+    displayOutput(gameWinner(), 'game-winner');
 });
 scissorsBtn.addEventListener('click', () => {
     const outcome = playRound('scissors', computerPlay());
-    console.log(outcome);
     game(outcome);
-    console.log(gameWinner());
+    displayOutput(outcome, 'text-output');
+    displayOutput(playerWins, 'player-score');
+    displayOutput(computerWins, 'computer-score');
+    displayOutput(gameWinner(), 'game-winner');
 });
