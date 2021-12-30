@@ -102,7 +102,7 @@ function game(outcome){
     }
 }
 
-// Create function to take output from playRound and append to results div
+// Create function to take output from the various game functions and append results to divs
 function displayOutput(results, className) {
     const outputDiv = document.querySelector(`.${className}`);
     const resultDiv = document.createTextNode(results);
