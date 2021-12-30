@@ -1,4 +1,3 @@
-const playerSelection = prompt('Please enter: Rock, Paper, or Scissors');
 // Steps to solve the problem:
 // Create function called computerPlay() that will randomly return rock, paper, or scissors
 function computerPlay() {
@@ -69,36 +68,53 @@ function playRound(playerSelection, computerSelection){
     return output;
 }
 
-// Write a game() function that calls playRound() five times, keeps score and reports the winner at the end
-function game(){
-    // Need to have variables that keep score for player and computer
-    let playerWins = 0;
-    let computerWins = 0;
-    // Use for loop to play game five times
-    for (let i = 0; i <= 5; i++){
-        // Call playRound() with arguments playerSelection and computerPlay()
-        let outcome = playRound(playerSelection, computerPlay());
-        console.log(outcome);
-        if (outcome.includes('win')){
-            playerWins++
-            console.log(`The Player Wins! Score: player ${playerWins} computer ${computerWins}`);
-        } else if (outcome.includes('lose')){
-            computerWins++
-            console.log(`The Computer Wins! Score: player ${playerWins} computer ${computerWins}`);
-        } else {
-            console.log(`Draw! Score: player ${playerWins} computer ${computerWins}`)
-        }
-    }
+// // Write a game() function that calls playRound() five times, keeps score and reports the winner at the end
+// function game(){
+//     // Need to have variables that keep score for player and computer
+//     let playerWins = 0;
+//     let computerWins = 0;
+//     // Use for loop to play game five times
+//     for (let i = 0; i <= 5; i++){
+//         // Call playRound() with arguments playerSelection and computerPlay()
+//         let outcome = playRound(playerSelection, computerPlay());
+//         console.log(outcome);
+//         if (outcome.includes('win')){
+//             playerWins++
+//             console.log(`The Player Wins! Score: player ${playerWins} computer ${computerWins}`);
+//         } else if (outcome.includes('lose')){
+//             computerWins++
+//             console.log(`The Computer Wins! Score: player ${playerWins} computer ${computerWins}`);
+//         } else {
+//             console.log(`Draw! Score: player ${playerWins} computer ${computerWins}`)
+//         }
+//     }
 
-    // Check score against each other
-    // Report winner and loser at the end of function
-    if (playerWins > computerWins) {
-        return `Player wins the game with ${playerWins} rounds won`
-    } else if (computerWins > playerWins) {
-        return `Computer wins the game with ${computerWins} rounds won`
-    } else {
-        return `Draw! No one wins the game. Player Wins: ${playerWins} is the same as Computer Wins: ${computerWins}`
-    }
-}
+//     // Check score against each other
+//     // Report winner and loser at the end of function
+//     if (playerWins > computerWins) {
+//         return `Player wins the game with ${playerWins} rounds won`
+//     } else if (computerWins > playerWins) {
+//         return `Computer wins the game with ${computerWins} rounds won`
+//     } else {
+//         return `Draw! No one wins the game. Player Wins: ${playerWins} is the same as Computer Wins: ${computerWins}`
+//     }
+// }
 
-console.log(game());
+// NEW GOAL: Add eventListeners to new buttons in the HTML document which call the playRound() function
+// Must call the function with correct parameters based on the text of the button
+const rockBtn = document.getElementById("rock");
+const paperBtn = document.getElementById("paper");
+const scissorsBtn = document.getElementById("scissors");
+
+rockBtn.addEventListener('click', () => {
+    const outcome = playRound('rock', computerPlay());
+    console.log(outcome);
+});
+paperBtn.addEventListener('click', () => {
+    const outcome = playRound('paper', computerPlay());
+    console.log(outcome);
+});
+scissorsBtn.addEventListener('click', () => {
+    const outcome = playRound('scissors', computerPlay());
+    console.log(outcome);
+});
